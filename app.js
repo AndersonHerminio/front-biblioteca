@@ -1,4 +1,5 @@
 const myApp = angular.module("bookApp", ['ui.router']);
+const apiBaseUrl = 'http://localhost:3111';
 
 myApp.config(function($stateProvider) {
     $stateProvider

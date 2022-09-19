@@ -11,14 +11,14 @@
             <th>AÇÕES</th>
         </thead>
         <tbody>
-            <tr>
-                <td>001</td>
-                <td>Anderson Hermínio</td>
-                <td>anderson@amigo.com</td>
-                <td>12-09-2022</td>
+            <tr ng-repeat="user in users">
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.created_at | date: 'dd/MM/yyyy HH:mm' }}</td>
                 <td>
                     <i class="fa-solid fa-trash"></i>
-                    <i ui-sref="users-edit" class="fa-solid fa-pencil" style="margin-left: 4px"></i>
+                    <i ui-sref="users-edit({ id: user.id })" class="fa-solid fa-pencil" style="margin-left: 4px"></i>
                 </td>
             </tr>
         </tbody>

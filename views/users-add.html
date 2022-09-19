@@ -4,22 +4,22 @@
     <form>
         <div class="form-group">
             <label for="inputUserName">NOME DO USUÁRIO</label>
-            <input type="text" class="form-control" id="inputUserName" placeholder="Insira um nome">
+            <input type="text" ng-model="form.name" class="form-control" id="inputUserName" placeholder="Insira um nome">
         </div>
         <br>
         <div class="form-group">
             <label for="inputEmailUser">E-MAIL</label>
-            <input type="email" class="form-control" id="inputEmailUser" placeholder="Insira um e-mail">
+            <input type="email" ng-model="form.email" class="form-control" id="inputEmailUser" placeholder="Insira um e-mail">
         </div>
         <br>
         <div class="form-group">
             <label for="inputPassword">SENHA</label>
-            <input type="password" class="form-control" id="inputPassword" placeholder="Insira uma senha">
+            <input type="password" ng-model="form.password" class="form-control" id="inputPassword" placeholder="Insira uma senha">
         </div>
         
         <br>
         <br>
-        <button class="btn btn-primary" ng-click="">CRIAR</button>
+        <button class="btn btn-primary" ng-click="submit()">CRIAR</button>
     </form>
 
 </div>
