@@ -1,0 +1,37 @@
+<div class="container">
+    <!-- <h2 class="text-center" ng-if="!isEdit">CRIAR USUÁRIO</h2>
+    <h2 class="text-center" ng-if="isEdit">EDITAR USUÁRIO</h2> -->
+
+    <h2 class="text-center">{{ isEdit ? 'EDITAR' : 'CRIAR' }} SOLICITAÇÃO</h2>
+
+    <form>
+        <div class="form-group">
+            <label for="inputStudentName">ALUNO</label>
+            <select ng-model="form.student_id" class="form-control" id="inputStudentName">
+                <option value="">Selecione um aluno</option>
+                <option value="{{ student.id }}" ng-repeat="student in students">{{ student.name }}</option>
+            </select>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="inputBookName">LIVRO</label>
+            <select ng-model="form.book_id" class="form-control" ng-change="addBook()" id="inputBookName">
+                <option value="">Selecione um livro</option>
+                <option value="{{ book.id }}" ng-repeat="book in books | filter: { selected: false }">{{ book.name }}</option>
+            </select>
+        </div>
+
+        <br/>
+
+        <table class="table" style="width: 300px">
+            <tr ng-repeat="book in books | filter: { selected: true }">
+                <td><input type="checkbox" ng-model="book.selected" ng-change="removeBook(book)"></td>
+                <td>{{ book.name }}</td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <button class="btn btn-primary" ng-click="submit()">{{ isEdit ? 'EDITAR' : 'CRIAR' }}</button>
+    </form>
+
+</div>

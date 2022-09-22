@@ -29,7 +29,7 @@
                             USUÁRIOS
                         </span>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" ui-sref="users-add">CRIAR</a></li>
+                            <li><a class="dropdown-item" ui-sref="users-form">CRIAR</a></li>
                             <li><a class="dropdown-item" ui-sref="users">LISTAR</a></li>
                         </ul>
                     </li>
@@ -40,7 +40,7 @@
                             LIVROS
                         </span>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" ui-sref="books-add">CRIAR</a></li>
+                            <li><a class="dropdown-item" ui-sref="books-form">CRIAR</a></li>
                             <li><a class="dropdown-item" ui-sref="books">LISTAR</a></li>
                         </ul>
                     </li>
@@ -51,7 +51,7 @@
                             ESTUDANTES
                         </span>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" ui-sref="students-add">CRIAR</a></li>
+                            <li><a class="dropdown-item" ui-sref="students-form">CRIAR</a></li>
                             <li><a class="dropdown-item" ui-sref="students">LISTAR</a></li>
                         </ul>
                     </li>
@@ -62,7 +62,7 @@
                             AUTORES
                         </span>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" ui-sref="authors-add">CRIAR</a></li>
+                            <li><a class="dropdown-item" ui-sref="authors-form">CRIAR</a></li>
                             <li><a class="dropdown-item" ui-sref="authors">LISTAR</a></li>
                         </ul>
                     </li>
@@ -73,10 +73,22 @@
                             EDITORAS
                         </span>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" ui-sref="publishers-add">CRIAR</a></li>
+                            <li><a class="dropdown-item" ui-sref="publishers-form">CRIAR</a></li>
                             <li><a class="dropdown-item" ui-sref="publishers">LISTAR</a></li>
                         </ul>
                     </li>
+
+                    <li class="nav-item dropdown">
+                        <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            SOLICITAÇÃO DE LIVROS
+                        </span>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" ui-sref="assigns-form">CRIAR</a></li>
+                            <li><a class="dropdown-item" ui-sref="assigns">LISTAR</a></li>
+                        </ul>
+                    </li>
+
                 </ul>
             </div>
         </div>
@@ -96,25 +108,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
     <script src="//unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./app.js"></script>
+
+
     <script src="./services/user.js"></script>
+    <script src="./services/publisher.js"></script>
+    <script src="./services/author.js"></script>
+    <script src="./services/student.js"></script>
+    <script src="./services/book.js"></script>
+    <script src="./services/assign.js"></script>
+
 
     <script src="./controllers/home.js"></script>
     <script src="./controllers/books.js"></script>
-    <script src="./controllers/books-add.js"></script>
-    <script src="./controllers/books-edit.js"></script>
+    <script src="./controllers/books-form.js"></script>
     <script src="./controllers/users.js"></script>
-    <script src="./controllers/users-add.js"></script>
-    <script src="./controllers/users-edit.js"></script>
+    <script src="./controllers/users-form.js"></script>
     <script src="./controllers/students.js"></script>
-    <script src="./controllers/students-add.js"></script>
-    <script src="./controllers/students-edit.js"></script>
+    <script src="./controllers/students-form.js"></script>
     <script src="./controllers/authors.js"></script>
-    <script src="./controllers/authors-add.js"></script>
-    <script src="./controllers/authors-edit.js"></script>
+    <script src="./controllers/authors-form.js"></script>
     <script src="./controllers/publishers.js"></script>
-    <script src="./controllers/publishers-add.js"></script>
-    <script src="./controllers/publishers-edit.js"></script>
+    <script src="./controllers/publishers-form.js"></script>
+    <script src="./controllers/assigns.js"></script>
+    <script src="./controllers/assigns-form.js"></script>
 </body>
 
 </html>

@@ -1,5 +1,8 @@
 <div class="container">
-    <h2 class="text-center">CRIAR USUÁRIO</h2>
+    <!-- <h2 class="text-center" ng-if="!isEdit">CRIAR USUÁRIO</h2>
+    <h2 class="text-center" ng-if="isEdit">EDITAR USUÁRIO</h2> -->
+
+    <h2 class="text-center">{{ isEdit ? 'EDITAR' : 'CRIAR' }} USUÁRIO</h2>
 
     <form>
         <div class="form-group">
@@ -12,14 +15,14 @@
             <input type="email" ng-model="form.email" class="form-control" id="inputEmailUser" placeholder="Insira um e-mail">
         </div>
         <br>
-        <div class="form-group">
+        <div class="form-group" ng-if="!isEdit">
             <label for="inputPassword">SENHA</label>
             <input type="password" ng-model="form.password" class="form-control" id="inputPassword" placeholder="Insira uma senha">
         </div>
         
         <br>
         <br>
-        <button class="btn btn-primary" ng-click="submit()">CRIAR</button>
+        <button class="btn btn-primary" ng-click="submit()">{{ isEdit ? 'EDITAR' : 'CRIAR' }}</button>
     </form>
 
 </div>

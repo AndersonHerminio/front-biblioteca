@@ -8,12 +8,13 @@
             <th>AÇÕES</th>
         </thead>
         <tbody>
-            <tr>
-                <td>001</td>
-                <td>Publisher Giant</td>
+            <tr ng-repeat="publisher in publishers">
+                <td>{{ publisher.id }}</td>
+                <td>{{ publisher.name }}</td>
                 <td>
-                    <i class="fa-solid fa-trash"></i>
-                    <i ui-sref="publishers-edit" class="fa-solid fa-pencil" style="margin-left: 4px"></i>
+                    <i class="fa-solid fa-trash" ng-click="deletePublisher(publisher.id)"></i>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <i ui-sref="publishers-form({ id: publisher.id })" class="fa-solid fa-pencil" style="margin-left: 4px"></i>
                 </td>
             </tr>
         </tbody>

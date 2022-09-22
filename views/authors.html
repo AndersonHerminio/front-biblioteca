@@ -10,14 +10,15 @@
             <th>AÇÕES</th>
         </thead>
         <tbody>
-            <tr>
-                <td>001</td>
-                <td>Machado de Asssis</td>
-                <td>17-09-1978</td>
-                <td>1sdfgfdwwefrgthrgewefgr</td>
+            <tr ng-repeat="author in authors">
+                <td>{{ author.id }}</td>
+                <td>{{ author.name }}</td>
+                <td>{{ author.birth_date }}</td>
+                <td>{{ author.biography }}</td>
                 <td>
-                    <i class="fa-solid fa-trash"></i>
-                    <i ui-sref="authors-edit" class="fa-solid fa-pencil" style="margin-left: 4px"></i>
+                    <i class="fa-solid fa-trash" ng-click="deleteAuthor(author.id)"></i>
+                    &nbsp;&nbsp;
+                    <i ui-sref="authors-form({ id: author.id })" class="fa-solid fa-pencil" style="margin-left: 4px"></i>
                 </td>
             </tr>
         </tbody>

@@ -1,0 +1,25 @@
+<div class="container">
+    <h2 class="text-center">{{ isEdit ? 'EDITAR' : 'CRIAR' }} AUTOR</h2>
+
+    <form>
+
+        <div class="form-group">
+            <label for="inputNameAuthors">NOME</label>
+            <input type="text" ng-model="form.name" class="form-control" id="inputNameAuthors" placeholder="Insira um nome">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="inputBirthDateAuthors">DATA DE NASCIMENTO</label>
+            <input type="date" ng-model="form.birth_date" class="form-control" id="inputBirthDateAuthors" placeholder="Insira uma data">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="inputBiografhyAuthors">BIOGRAFIA</label>
+            <input type="text" ng-model="form.biography" class="form-control" id="inputBiografhyAuthors" placeholder="Insira uma biografia">
+        </div>
+        <br>
+        <br>
+        <button class="btn btn-primary" ng-click="submit()">{{ isEdit ? 'EDITAR' : 'CRIAR' }}</button>
+    </form>
+
+</div>
