@@ -1,5 +1,4 @@
-myApp.controller("usersFormCtrl", ['$scope', 'UserService', '$state', '$stateParams', function($scope, UserService, $state, $stateParams) {
-    $scope.isEdit = !!$stateParams.id;
+myApp.controller("usersAddCtrl", ['$scope', 'UserService', '$state', '$stateParams', function($scope, UserService, $state, $stateParams) {
     $scope.form = {
         name: '',
         email: '',
@@ -7,10 +6,6 @@ myApp.controller("usersFormCtrl", ['$scope', 'UserService', '$state', '$statePar
     };
 
     const init = () => {
-        if (!$scope.isEdit) {
-            return;
-        }
-
         UserService.find($stateParams.id).then(response => {
             $scope.form = response.data;
         });
@@ -50,21 +45,14 @@ myApp.controller("usersFormCtrl", ['$scope', 'UserService', '$state', '$statePar
             return;
         }
 
-        if ($scope.isEdit) {
-            UserService.edit($scope.form).then(() => {
-                alert('Usuário editado com sucesso!');
-                $state.reload();
-            }).catch(() => {
-                alert('Erro ao editar');
-            });
-        } else {
             UserService.add($scope.form).then(() => {
-                alert('Usuário cadastrado com sucesso!');
+                alert('Usuário cadastrado com sucesso!');//coloca sweetAlert para sucesso
                 $state.reload();
+                $state.go("home");
             }).catch(() => {
                 alert('Erro ao cadastrar');
             });
-        }
+        
     };
 
     init();

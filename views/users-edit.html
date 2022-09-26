@@ -1,0 +1,22 @@
+<div class="container">
+    <h2 class="text-center">EDITAR USUÁRIO</h2>
+
+    <!-- <h2 class="text-center">{{ isEdit ? 'EDITAR' : 'CRIAR' }} USUÁRIO</h2> -->
+
+    <form>
+        <div class="form-group">
+            <label for="inputUserName">NOME DO USUÁRIO</label>
+            <input type="text" ng-model="form.name" class="form-control" id="inputUserName" placeholder="Insira um nome">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="inputEmailUser">E-MAIL</label>
+            <input type="email" ng-model="form.email" class="form-control" id="inputEmailUser" placeholder="Insira um e-mail">
+        </div>
+        
+        <br>
+        <br>
+        <button class="btn btn-primary" ng-click="submit()">EDITAR</button>
+    </form>
+
+</div>

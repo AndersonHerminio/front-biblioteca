@@ -12,8 +12,8 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-light" ng-if="isLogged">
-        <div class="container" class="container-fluid">
+    <nav class="container navbar navbar-expand-lg navbar-light bg-light" ng-if="isLogged">
+        <div class="container-fluid">
             <a class="navbar-brand" ui-sref="home">INÍCIO</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -26,14 +26,12 @@
                     <li class="nav-item dropdown">
                         <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            USUÁRIOS
+                            USUÁRIO
                         </span>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" ui-sref="users-form">CRIAR</a></li>
-                            <li><a class="dropdown-item" ui-sref="users">LISTAR</a></li>
+                            <li><a class="dropdown-item" ui-sref="users">EDITAR</a></li>
                         </ul>
                     </li>
-                    
                     <li class="nav-item dropdown">
                         <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
@@ -88,11 +86,14 @@
                             <li><a class="dropdown-item" ui-sref="assigns">LISTAR</a></li>
                         </ul>
                     </li>
+                    <button type="button" class="btn btn-danger">SAIR</button>
 
                 </ul>
             </div>
         </div>
     </nav>
+
+    
 
 <br><br><br><br>
 
@@ -126,7 +127,8 @@
     <script src="./controllers/books.js"></script>
     <script src="./controllers/books-form.js"></script>
     <script src="./controllers/users.js"></script>
-    <script src="./controllers/users-form.js"></script>
+    <script src="./controllers/users-add.js"></script>
+    <script src="./controllers/users-edit.js"></script>
     <script src="./controllers/students.js"></script>
     <script src="./controllers/students-form.js"></script>
     <script src="./controllers/authors.js"></script>

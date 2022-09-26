@@ -60,13 +60,22 @@ myApp.config(function ($stateProvider, $httpProvider) {
       },
     })
     .state({
-      name: "users-form",
-      url: "/users-form/:id",
+      name: "users-add",
+      url: "/users-add/:id",
       params: {
         id: null,
       },
-      templateUrl: "views/users-form.html",
-      controller: "usersFormCtrl",
+      templateUrl: "views/users-add.html",
+      controller: "usersAddCtrl"
+    })
+    .state({
+      name: "users-edit",
+      url: "/users-edit/:id",
+      params: {
+        id: null,
+      },
+      templateUrl: "views/users-edit.html",
+      controller: "usersEditCtrl",
       resolve: {
         loggedIn: isAuthorized,
       },
