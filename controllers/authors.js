@@ -1,4 +1,4 @@
-myApp.controller("authorsCtrl", ['$scope', 'AuthorService', '$state', function($scope, AuthorService, $state) {
+myApp.controller("authorsCtrl", ['$scope', 'AuthorService', '$state', 'AlertMessage',function($scope, AuthorService, $state, AlertMessage) {
 
     $scope.authors = [];
 
@@ -22,11 +22,7 @@ myApp.controller("authorsCtrl", ['$scope', 'AuthorService', '$state', function($
           reverseButtons: true,
         });
         if (result.isConfirmed) {
-          Swal.fire(
-            'Removido!',
-            'O Autor foi removido.',
-            'success'
-          )
+          AlertMessage.success('O Autor foi removido.')
         }
           
         if (!result.isConfirmed) {
@@ -37,10 +33,7 @@ myApp.controller("authorsCtrl", ['$scope', 'AuthorService', '$state', function($
           // alert('Autor removido');
           $state.reload();
         }).catch(() => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Erro ao remover autor!',
-          })
+          AlertMessage.error('Erro ao remover autor!')
         })
       };
   

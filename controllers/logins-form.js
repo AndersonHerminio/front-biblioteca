@@ -1,5 +1,5 @@
-myApp.controller("loginCtrl", ["$scope", "$state", "LoginService",
-  function ($scope, $state, LoginService) {
+myApp.controller("loginCtrl", ["$scope", "$state", "LoginService", '$rootScope', 'AlertMessage',
+  function ($scope, $state, LoginService, $rootScope, AlertMessage) {
     $scope.form = {
       email: "",
       password: "",
@@ -7,26 +7,17 @@ myApp.controller("loginCtrl", ["$scope", "$state", "LoginService",
 
     const isValid = () => {
       if (!$scope.form.email) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Informe um email!',
-        })
+        AlertMessage.error("Informe um email!")
         return false;
       }
 
       if ($scope.form.email.length < 3) {
-        Swal.fire({
-          icon: 'error',
-          title: 'O campo email deve conter no mínimo 3 caracteres!',
-        })
+        AlertMessage.error("O campo email deve conter no mínimo 3 caracteres!")
         return false;
       }
 
       if (!$scope.form.password) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Informe uma senha!',
-        })
+        AlertMessage.error("Informe uma senha!")
         return false;
       }
 
@@ -37,16 +28,15 @@ myApp.controller("loginCtrl", ["$scope", "$state", "LoginService",
       if (!isValid()) {
         return;
       }
+
       LoginService.login($scope.form)
         .then((response) => {
           localStorage.setItem("token", response.data.token);
+          $rootScope.isLogged = true;
           $state.go("home");
         })
         .catch(() => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Dados Inválidos!',
-          })
+          AlertMessage.error("Credenciais Inválidas!")
         });
     };
 	$scope.submit = submit;

@@ -1,4 +1,4 @@
-myApp.controller("usersCtrl", ["$scope", "UserService", '$state', function ($scope, UserService, $state) {
+myApp.controller("usersCtrl", ["$scope", "UserService", '$state', 'AlertMessage', function ($scope, UserService, $state, AlertMessage) {
     $scope.users = [];
 
     const init = () => {
@@ -21,11 +21,7 @@ myApp.controller("usersCtrl", ["$scope", "UserService", '$state', function ($sco
         reverseButtons: true,
       });
       if (result.isConfirmed) {
-        Swal.fire(
-          'Removido!',
-          'O Usuário foi removido.',
-          'success'
-        )
+        AlertMessage.success("Usuário removido com sucesso!")
       }
 
       if (!result.isConfirmed) {
@@ -33,15 +29,11 @@ myApp.controller("usersCtrl", ["$scope", "UserService", '$state', function ($sco
       }
 
       UserService.destroy(id).then(() => {
-        // alert('Usuário removido');
         $state.reload();
         localStorage.clear();
         $state.go("login")
       }).catch(() => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Erro ao remover usuário!',
-        })
+        AlertMessage.error("Erro ao remover usuário!")
       })
     };
 

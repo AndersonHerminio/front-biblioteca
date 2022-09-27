@@ -1,4 +1,4 @@
-myApp.controller("assignsCtrl", ["$scope", "AssignService", '$state', function ($scope, AssignService, $state) {
+myApp.controller("assignsCtrl", ["$scope", "AssignService", '$state', 'AlertMessage', function ($scope, AssignService, $state, AlertMessage) {
     $scope.assigns = [];
 
     const init = () => {
@@ -21,11 +21,7 @@ myApp.controller("assignsCtrl", ["$scope", "AssignService", '$state', function (
         reverseButtons: true,
       });
       if (result.isConfirmed) {
-        Swal.fire(
-          'Removido!',
-          'A solicitação foi removida.',
-          'success'
-        )
+        AlertMessage.success('A solicitação foi removida.')
       }
 
       if (!result.isConfirmed) {
@@ -36,10 +32,7 @@ myApp.controller("assignsCtrl", ["$scope", "AssignService", '$state', function (
         // alert('Solicitação removida');
         $state.reload();
       }).catch(() => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Erro ao remover solicitação!',
-        })
+        AlertMessage.error('Erro ao remover solicitação!')
       })
     };
 

@@ -1,4 +1,4 @@
-myApp.controller("booksFormCtrl", ['$scope', 'BookService', '$state', '$stateParams', 'AuthorService', 'PublisherService', function($scope, BookService, $state, $stateParams, AuthorService, PublisherService) {
+myApp.controller("booksFormCtrl", ['$scope', 'BookService', '$state', '$stateParams', 'AuthorService', 'PublisherService', 'AlertMessage',function($scope, BookService, $state, $stateParams, AuthorService, PublisherService, AlertMessage) {
     $scope.isEdit = !!$stateParams.id;
     $scope.form = {
         name: '',
@@ -30,50 +30,32 @@ myApp.controller("booksFormCtrl", ['$scope', 'BookService', '$state', '$statePar
 
     const isValid = () => {
         if (!$scope.form.name) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Informe um nome!',
-              })
+            AlertMessage.error('Informe um nome!')
             return false;
         }
 
         if ($scope.form.name.length < 3) {
-            Swal.fire({
-                icon: 'error',
-                title: 'O campo nome deve conter no mínimo 3 caracteres!',
-              })
+            AlertMessage.error('O campo nome deve conter no mínimo 3 caracteres!')
             return false;
         }
 
         if (!$scope.form.publication_date) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Informe uma data de nascimento!',
-              })
+            AlertMessage.error('Informe uma data de nascimento!')
             return false;
         }
 
         if (!moment($scope.form.publication_date).isValid()) {
-            Swal.fire({
-                icon: 'error',
-                title: 'o campo data precisar ser preenchido!',
-              })
+            AlertMessage.error('o campo data precisar ser preenchido!')
             return false;
         }
 
         if (!$scope.form.authors_id) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Informe um autor!',
-              })
+            AlertMessage.error('Informe um autor!')
             return false;
         }
 
         if (!$scope.form.publishers_id) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Informe uma editora!',
-              })
+            AlertMessage.error('Informe uma editora!')
             return false;
         }
 
@@ -99,36 +81,18 @@ myApp.controller("booksFormCtrl", ['$scope', 'BookService', '$state', '$statePar
 
         if ($scope.isEdit) {
             BookService.edit(data).then(() => {
-                Swal.fire({
-                    position: 'top-center',
-                    icon: 'success',
-                    title: 'Livro editado com sucesso',
-                    showConfirmButton: false,
-                    timer: 2000
-                  })
+                AlertMessage.success('Livro editado com sucesso')
                 $state.reload();
             }).catch(() => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Erro ao editar!',
-                  })
+                AlertMessage.error('Erro ao editar!')
             });
         } else {
             BookService.add(data).then(() => {
-                Swal.fire({
-                    position: 'top-center',
-                    icon: 'success',
-                    title: 'Livro cadastrado com sucesso',
-                    showConfirmButton: false,
-                    timer: 2000
-                  })
+                AlertMessage.success('Livro cadastrado com sucesso')
                 $state.reload();
             }).catch((e) => {
                 console.log(e);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Erro ao cadastrar!',
-                  })
+                AlertMessage.error('Erro ao cadastrar!')
             });
         }
     };

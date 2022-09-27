@@ -1,4 +1,4 @@
-myApp.controller("authorsFormCtrl", ['$scope', 'AuthorService', '$state', '$stateParams', function($scope, AuthorService, $state, $stateParams ) {
+myApp.controller("authorsFormCtrl", ['$scope', 'AuthorService', '$state', '$stateParams', 'AlertMessage',function($scope, AuthorService, $state, $stateParams, AlertMessage) {
     $scope.isEdit = !!$stateParams.id;
     $scope.form = {
         name: '',
@@ -18,50 +18,32 @@ myApp.controller("authorsFormCtrl", ['$scope', 'AuthorService', '$state', '$stat
 
     const isValid = () => {
         if (!$scope.form.name) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Informe um nome!',
-              })
+            AlertMessage.error('Informe um nome!')
             return false;
         }
 
         if ($scope.form.name.length < 3) {
-            Swal.fire({
-                icon: 'error',
-                title: 'O campo nome deve conter no mínimo 3 caracteres!',
-              })
+            AlertMessage.error('O campo nome deve conter no mínimo 3 caracteres!')
             return false;
         }
 
         if (!$scope.form.birth_date) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Informe uma data de nascimento!',
-              })
+            AlertMessage.error('Informe uma data de nascimento!')
             return false;
         }
 
         if (!moment($scope.form.birth_date).isValid()) {
-            Swal.fire({
-                icon: 'error',
-                title: 'O campo data deve ser preenchido!',
-              })
+            AlertMessage.error('O campo data deve ser preenchido!')
             return false;
         }
     
         if (!$scope.form.biography) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Informe uma biografia!',
-              })
+            AlertMessage.error('Informe uma biografia!')
             return false;
         }
 
         if ($scope.form.biography.length < 3) {
-            Swal.fire({
-                icon: 'error',
-                title: 'O campo biografia deve conter no mínimo 3 caracteres!',
-              })
+            AlertMessage.error('O campo biografia deve conter no mínimo 3 caracteres!')
             return false;
         }
         return true;
@@ -85,35 +67,17 @@ myApp.controller("authorsFormCtrl", ['$scope', 'AuthorService', '$state', '$stat
 
         if ($scope.isEdit) {
             AuthorService.edit(data).then(() => {
-                Swal.fire({
-                    position: 'top-center',
-                    icon: 'success',
-                    title: 'Autor editado com sucesso',
-                    showConfirmButton: false,
-                    timer: 2000
-                  })
+                AlertMessage.success('Autor editado com sucesso')
                 $state.reload();
             }).catch(() => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Erro ao editar!',
-                  })
+                AlertMessage.error('Erro ao editar!')
             });
         } else {
             AuthorService.add(data).then(() => {
-                Swal.fire({
-                    position: 'top-center',
-                    icon: 'success',
-                    title: 'Autor cadastrado com sucesso',
-                    showConfirmButton: false,
-                    timer: 2000
-                  })
+                AlertMessage.success('Autor cadastrado com sucesso')
                 $state.reload();
             }).catch(() => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Erro ao cadastrar!',
-                  })
+                AlertMessage.error('Erro ao cadastrar!')
             });
         }
     };

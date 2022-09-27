@@ -10,18 +10,14 @@ myApp.config(function ($stateProvider, $httpProvider) {
       url: "",
       templateUrl: "views/home.html",
       controller: "homeCtrl",
-      resolve: {
-        loggedIn: isAuthorized,
-      },
+      onEnter: isAuthorized
     })
     .state({
       name: "home-2",
       url: "/",
       templateUrl: "views/home.html",
       controller: "homeCtrl",
-      resolve: {
-        loggedIn: isAuthorized,
-      },
+      onEnter: isAuthorized
     })
     .state({
       name: "login",
@@ -34,9 +30,7 @@ myApp.config(function ($stateProvider, $httpProvider) {
       url: "/books",
       templateUrl: "views/books.html",
       controller: "booksCtrl",
-      resolve: {
-        loggedIn: isAuthorized,
-      },
+      onEnter: isAuthorized
     })
     .state({
       name: "books-form",
@@ -46,18 +40,14 @@ myApp.config(function ($stateProvider, $httpProvider) {
       },
       templateUrl: "views/books-form.html",
       controller: "booksFormCtrl",
-      resolve: {
-        loggedIn: isAuthorized,
-      },
+      onEnter: isAuthorized
     })
     .state({
       name: "users",
       url: "/users",
       templateUrl: "views/users.html",
       controller: "usersCtrl",
-      resolve: {
-        loggedIn: isAuthorized,
-      },
+      onEnter: isAuthorized
     })
     .state({
       name: "users-add",
@@ -76,18 +66,14 @@ myApp.config(function ($stateProvider, $httpProvider) {
       },
       templateUrl: "views/users-edit.html",
       controller: "usersEditCtrl",
-      resolve: {
-        loggedIn: isAuthorized,
-      },
+      onEnter: isAuthorized
     })
     .state({
       name: "students",
       url: "/students",
       templateUrl: "views/students.html",
       controller: "studentsCtrl",
-      resolve: {
-        loggedIn: isAuthorized,
-      },
+      onEnter: isAuthorized
     })
     .state({
       name: "students-form",
@@ -97,9 +83,7 @@ myApp.config(function ($stateProvider, $httpProvider) {
       },
       templateUrl: "views/students-form.html",
       controller: "studentsFormCtrl",
-      resolve: {
-        loggedIn: isAuthorized,
-      },
+      onEnter: isAuthorized
     })
     .state({
       name: "authors",
@@ -115,18 +99,14 @@ myApp.config(function ($stateProvider, $httpProvider) {
       },
       templateUrl: "views/authors-form.html",
       controller: "authorsFormCtrl",
-      resolve: {
-        loggedIn: isAuthorized,
-      },
+      onEnter: isAuthorized
     })
     .state({
       name: "publishers",
       url: "/publishers",
       templateUrl: "views/publishers.html",
       controller: "publishersCtrl",
-      resolve: {
-        loggedIn: isAuthorized,
-      },
+      onEnter: isAuthorized
     })
     .state({
       name: "publishers-form",
@@ -142,9 +122,7 @@ myApp.config(function ($stateProvider, $httpProvider) {
       url: "/assigns",
       templateUrl: "views/assigns.html",
       controller: "assignsCtrl",
-      resolve: {
-        loggedIn: isAuthorized,
-      },
+      onEnter: isAuthorized
     })
     .state({
       name: "assigns-form",
@@ -154,9 +132,7 @@ myApp.config(function ($stateProvider, $httpProvider) {
       },
       templateUrl: "views/assigns-form.html",
       controller: "assignsFormCtrl",
-      resolve: {
-        loggedIn: isAuthorized,
-      },
+      onEnter: isAuthorized
     });
 });
 

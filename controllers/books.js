@@ -2,7 +2,8 @@ myApp.controller("booksCtrl", [
   "$scope",
   "BookService",
   "$state",
-  function ($scope, BookService, $state) {
+  'AlertMessage',
+  function ($scope, BookService, $state, AlertMessage) {
     
     $scope.books = [];
 
@@ -26,11 +27,7 @@ myApp.controller("booksCtrl", [
         reverseButtons: true,
       });
       if (result.isConfirmed) {
-        Swal.fire(
-          'Removido!',
-          'O livro foi removido.',
-          'success'
-        )
+        AlertMessage.success('O livro foi removido.')
       }
 
       if (!result.isConfirmed) {
@@ -43,10 +40,7 @@ myApp.controller("booksCtrl", [
           $state.reload();
         })
         .catch(() => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Erro ao remover livro!',
-          })
+          AlertMessage.error('Erro ao remover livro!')
         });
     };
 

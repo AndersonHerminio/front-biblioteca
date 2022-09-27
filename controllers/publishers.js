@@ -1,4 +1,4 @@
-myApp.controller("publishersCtrl", ['$scope', 'PublisherService', '$state', function($scope, PublisherService, $state) {
+myApp.controller("publishersCtrl", ['$scope', 'PublisherService', '$state', 'AlertMessage',function($scope, PublisherService, $state, AlertMessage) {
 
     $scope.publishers = [];
 
@@ -22,11 +22,7 @@ myApp.controller("publishersCtrl", ['$scope', 'PublisherService', '$state', func
           reverseButtons: true,
         });
         if (result.isConfirmed) {
-          Swal.fire(
-            'Removido!',
-            'A editora foi removida.',
-            'success'
-          )
+          AlertMessage.success('A editora foi removida!')
         }
   
         if (!result.isConfirmed) {
@@ -34,13 +30,9 @@ myApp.controller("publishersCtrl", ['$scope', 'PublisherService', '$state', func
         }
   
         PublisherService.destroy(id).then(() => {
-          // alert('Editora removida');
           $state.reload();
         }).catch(() => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Erro ao remover editora!',
-          })
+          AlertMessage.error('Erro ao remover editora!')
         })
       };
 

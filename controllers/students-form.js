@@ -1,4 +1,4 @@
-myApp.controller("studentsFormCtrl", ['$scope', 'StudentService', '$state', '$stateParams', function($scope, StudentService, $state, $stateParams) {
+myApp.controller("studentsFormCtrl", ['$scope', 'StudentService', '$state', '$stateParams', 'AlertMessage', function($scope, StudentService, $state, $stateParams, AlertMessage) {
     $scope.isEdit = !!$stateParams.id;
     $scope.form = {
         name: '',
@@ -18,49 +18,31 @@ myApp.controller("studentsFormCtrl", ['$scope', 'StudentService', '$state', '$st
 
     const isValid = () => {
         if (!$scope.form.name) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Informe um nome!',
-              })
+            AlertMessage.error("Informe um nome!")
             return false;
         }
 
         if ($scope.form.name.length < 3) {
-            Swal.fire({
-                icon: 'error',
-                title: 'O campo nome deve conter no mínimo 3 caracteres!',
-              })
+            AlertMessage.error("O campo nome deve conter no mínimo 3 caracteres!")
             return false;
         }
 
         if (!$scope.form.email) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Informe um email!',
-              })
+            AlertMessage.error("Informe um email!")
             return false;
         }
 
         if ($scope.form.email.length < 3) {
-            Swal.fire({
-                icon: 'error',
-                title: 'O campo email deve conter no mínimo 3 caracteres!',
-              })
+            AlertMessage.error("O campo email deve conter no mínimo 3 caracteres!")
             return false;
         }
         if (!$scope.form.birth_date) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Informe a data de nascimento!',
-              })
+            AlertMessage.error("Informe uma data de nascimento!")
             return false;
         }
 
         if (!moment($scope.form.birth_date).isValid()) {
-            Swal.fire({
-                icon: 'error',
-                title: 'O campo data precisa ser preenchido!',
-              })
+            AlertMessage.error("O campo data precisa ser preenchido!")
             return false;
         }
         
@@ -87,35 +69,17 @@ myApp.controller("studentsFormCtrl", ['$scope', 'StudentService', '$state', '$st
 
         if ($scope.isEdit) {
             StudentService.edit(data).then(() => {
-                Swal.fire({
-                    position: 'top-center',
-                    icon: 'success',
-                    title: 'Estudante editado com sucesso',
-                    showConfirmButton: false,
-                    timer: 2000
-                  })
+                AlertMessage.success("Estudante editado com sucesso!")
                 $state.reload();
             }).catch(() => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Erro ao editar!',
-                  })
+                AlertMessage.error("Erro ao editar!")
             });
         } else {
             StudentService.add(data).then(() => {
-                Swal.fire({
-                    position: 'top-center',
-                    icon: 'success',
-                    title: 'Estudante cadastrado com sucesso',
-                    showConfirmButton: false,
-                    timer: 2000
-                  })
+                AlertMessage.success("Estudante cadastrado com sucesso!")
                 $state.reload();
             }).catch(() => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Erro ao cadastrar!',
-                  })
+                AlertMessage.error("Erro ao editar!")
             });
         }
     };

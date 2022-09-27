@@ -1,4 +1,4 @@
-myApp.controller("assignsFormCtrl", ['$scope', 'AssignService', '$state', '$stateParams', 'BookService', 'StudentService', function($scope, AssignService, $state, $stateParams, BookService, StudentService) {
+myApp.controller("assignsFormCtrl", ['$scope', 'AssignService', '$state', '$stateParams', 'BookService', 'StudentService', 'AlertMessage',function($scope, AssignService, $state, $stateParams, BookService, StudentService, AlertMessage) {
     $scope.isEdit = !!$stateParams.id;
     $scope.form = {
         book_id: '',
@@ -35,18 +35,12 @@ myApp.controller("assignsFormCtrl", ['$scope', 'AssignService', '$state', '$stat
         const hasSelectedBooks = $scope.books.some(book => book.selected);
     
         if (!hasSelectedBooks) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Selecione um livro!',
-              })
+            AlertMessage.error('Selecione um livro!')
             return false;
         }
 
         if (!$scope.form.student_id) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Selecione um aluno!',
-              })
+            AlertMessage.error('Selecione um aluno!')
             return false;
         }
 
@@ -65,20 +59,11 @@ myApp.controller("assignsFormCtrl", ['$scope', 'AssignService', '$state', '$stat
             book_id: selectedBookIds
         };
         AssignService[action](bookForm).then(() => {
-            Swal.fire({
-                    position: 'top-center',
-                    icon: 'success',
-                    title: `Solicitação ${$scope.isEdit ? 'editada' : 'efetuada'} com sucesso`,
-                    showConfirmButton: false,
-                    timer: 2000
-                  })
+            AlertMessage.success(`Solicitação ${$scope.isEdit ? 'editada' : 'efetuada'} com sucesso`)
             $state.reload();
         }).catch((e) => {
             console.log(e);
-            Swal.fire({
-                icon: 'error',
-                title: `Erro ao ${$scope.isEdit ? 'editar' : 'solicitar'}!`,
-              })
+            AlertMessage.error(`Erro ao ${$scope.isEdit ? 'editar' : 'solicitar'}!`)
             
         });
 

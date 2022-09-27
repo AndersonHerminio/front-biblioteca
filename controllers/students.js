@@ -1,4 +1,4 @@
-myApp.controller("studentsCtrl", ['$scope', 'StudentService', '$state', function($scope, StudentService, $state) {
+myApp.controller("studentsCtrl", ['$scope', 'StudentService', '$state', 'AlertMessage', function($scope, StudentService, $state, AlertMessage) {
     $scope.students = [];
 
     const init = () => {
@@ -21,11 +21,7 @@ myApp.controller("studentsCtrl", ['$scope', 'StudentService', '$state', function
           reverseButtons: true,
         });
         if (result.isConfirmed) {
-            Swal.fire(
-              'Removido!',
-              'O estudante foi removido.',
-              'success'
-            )
+          AlertMessage.success("Estudante removido com sucesso!")
           }
   
         if (!result.isConfirmed) {
@@ -36,10 +32,7 @@ myApp.controller("studentsCtrl", ['$scope', 'StudentService', '$state', function
         //   alert('Estudante removido');
           $state.reload();
         }).catch(() => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Erro ao remover estudante!',
-          })
+          AlertMessage.error("Erro ao remover estudante!")
         })
       };
   
