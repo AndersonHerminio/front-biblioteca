@@ -37,7 +37,10 @@ myApp.controller("authorsCtrl", ['$scope', 'AuthorService', '$state', function($
           // alert('Autor removido');
           $state.reload();
         }).catch(() => {
-          alert('Erro ao remover Autor');
+          Swal.fire({
+            icon: 'error',
+            title: 'Erro ao remover autor!',
+          })
         })
       };
   

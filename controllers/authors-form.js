@@ -18,32 +18,50 @@ myApp.controller("authorsFormCtrl", ['$scope', 'AuthorService', '$state', '$stat
 
     const isValid = () => {
         if (!$scope.form.name) {
-            alert('Informe o nome');
+            Swal.fire({
+                icon: 'error',
+                title: 'Informe um nome!',
+              })
             return false;
         }
 
         if ($scope.form.name.length < 3) {
-            alert('O campo nome deve conter no mínimo 3 caracteres.');
+            Swal.fire({
+                icon: 'error',
+                title: 'O campo nome deve conter no mínimo 3 caracteres!',
+              })
             return false;
         }
 
         if (!$scope.form.birth_date) {
-            alert('Informe a data de nascimento');
+            Swal.fire({
+                icon: 'error',
+                title: 'Informe uma data de nascimento!',
+              })
             return false;
         }
 
         if (!moment($scope.form.birth_date).isValid()) {
-            alert('O campo data precisa ser preenchido.');
+            Swal.fire({
+                icon: 'error',
+                title: 'O campo data deve ser preenchido!',
+              })
             return false;
         }
     
         if (!$scope.form.biography) {
-            alert('Informe uma biografia');
+            Swal.fire({
+                icon: 'error',
+                title: 'Informe uma biografia!',
+              })
             return false;
         }
 
         if ($scope.form.biography.length < 3) {
-            alert('O campo biografia deve conter no mínimo 3 caracteres.');
+            Swal.fire({
+                icon: 'error',
+                title: 'O campo biografia deve conter no mínimo 3 caracteres!',
+              })
             return false;
         }
         return true;
@@ -67,17 +85,35 @@ myApp.controller("authorsFormCtrl", ['$scope', 'AuthorService', '$state', '$stat
 
         if ($scope.isEdit) {
             AuthorService.edit(data).then(() => {
-                alert('Autor editado com sucesso!');
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Autor editado com sucesso',
+                    showConfirmButton: false,
+                    timer: 2000
+                  })
                 $state.reload();
             }).catch(() => {
-                alert('Erro ao editar');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro ao editar!',
+                  })
             });
         } else {
             AuthorService.add(data).then(() => {
-                alert('Autor cadastrado com sucesso!');
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Autor cadastrado com sucesso',
+                    showConfirmButton: false,
+                    timer: 2000
+                  })
                 $state.reload();
             }).catch(() => {
-                alert('Erro ao cadastrar');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro ao cadastrar!',
+                  })
             });
         }
     };

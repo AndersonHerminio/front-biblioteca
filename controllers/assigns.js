@@ -36,7 +36,10 @@ myApp.controller("assignsCtrl", ["$scope", "AssignService", '$state', function (
         // alert('Solicitação removida');
         $state.reload();
       }).catch(() => {
-        alert('Erro ao remover solicitação');
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro ao remover solicitação!',
+        })
       })
     };
 

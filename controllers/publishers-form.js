@@ -16,12 +16,18 @@ myApp.controller("publishersFormCtrl", ['$scope', 'PublisherService', '$state', 
 
     const isValid = () => {
         if (!$scope.form.name) {
-            alert('Informe o nome');
+            Swal.fire({
+                icon: 'error',
+                title: 'Informe um nome!',
+              })
             return false;
         }
 
         if ($scope.form.name.length < 3) {
-            alert('O campo nome deve conter no mínimo 3 caracteres.');
+            Swal.fire({
+                icon: 'error',
+                title: 'O campo nome deve conter no mínimo 3 caracteres!',
+              })
             return false;
         }
         return true;
@@ -34,17 +40,35 @@ myApp.controller("publishersFormCtrl", ['$scope', 'PublisherService', '$state', 
 
         if ($scope.isEdit) {
             PublisherService.edit($scope.form).then(() => {
-                alert('Editora editada com sucesso!');
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Editora editada com sucesso',
+                    showConfirmButton: false,
+                    timer: 2000
+                  })
                 $state.reload();
             }).catch(() => {
-                alert('Erro ao editar');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro ao editar!',
+                  })
             });
         } else {
             PublisherService.add($scope.form).then(() => {
-                alert('Editora cadastrada com sucesso!');
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Editora cadastrada com sucesso',
+                    showConfirmButton: false,
+                    timer: 2000
+                  })
                 $state.reload();
             }).catch(() => {
-                alert('Erro ao cadastrar');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro ao cadastrar!',
+                  })
             });
         }
     };

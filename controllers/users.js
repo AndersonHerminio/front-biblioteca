@@ -35,8 +35,13 @@ myApp.controller("usersCtrl", ["$scope", "UserService", '$state', function ($sco
       UserService.destroy(id).then(() => {
         // alert('Usuário removido');
         $state.reload();
+        localStorage.clear();
+        $state.go("login")
       }).catch(() => {
-        alert('Erro ao remover usuário');
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro ao remover usuário!',
+        })
       })
     };
 

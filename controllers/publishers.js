@@ -37,7 +37,10 @@ myApp.controller("publishersCtrl", ['$scope', 'PublisherService', '$state', func
           // alert('Editora removida');
           $state.reload();
         }).catch(() => {
-          alert('Erro ao remover editora');
+          Swal.fire({
+            icon: 'error',
+            title: 'Erro ao remover editora!',
+          })
         })
       };
 

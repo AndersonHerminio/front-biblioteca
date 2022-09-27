@@ -35,12 +35,18 @@ myApp.controller("assignsFormCtrl", ['$scope', 'AssignService', '$state', '$stat
         const hasSelectedBooks = $scope.books.some(book => book.selected);
     
         if (!hasSelectedBooks) {
-            alert('Selecione um livro.');
+            Swal.fire({
+                icon: 'error',
+                title: 'Selecione um livro!',
+              })
             return false;
         }
 
         if (!$scope.form.student_id) {
-            alert('Selecione um aluno.');
+            Swal.fire({
+                icon: 'error',
+                title: 'Selecione um aluno!',
+              })
             return false;
         }
 
@@ -58,13 +64,22 @@ myApp.controller("assignsFormCtrl", ['$scope', 'AssignService', '$state', '$stat
             student_id: ~~$scope.form.student_id,
             book_id: selectedBookIds
         };
-    
         AssignService[action](bookForm).then(() => {
-            alert(`Solicitação ${$scope.isEdit ? 'editada' : 'adicionada'} com sucesso!`);
+            Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: `Solicitação ${$scope.isEdit ? 'editada' : 'efetuada'} com sucesso`,
+                    showConfirmButton: false,
+                    timer: 2000
+                  })
             $state.reload();
         }).catch((e) => {
             console.log(e);
-            alert(`Erro ao ${$scope.isEdit ? 'editar' : 'criar'}.`);
+            Swal.fire({
+                icon: 'error',
+                title: `Erro ao ${$scope.isEdit ? 'editar' : 'solicitar'}!`,
+              })
+            
         });
 
     };

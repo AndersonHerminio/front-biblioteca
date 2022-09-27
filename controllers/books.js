@@ -43,7 +43,10 @@ myApp.controller("booksCtrl", [
           $state.reload();
         })
         .catch(() => {
-          alert("Erro ao remover o livro");
+          Swal.fire({
+            icon: 'error',
+            title: 'Erro ao remover livro!',
+          })
         });
     };
 

@@ -11,99 +11,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
-<body>
-    <nav class="container navbar navbar-expand-lg navbar-light bg-light" ng-if="isLogged">
-        <div class="container-fluid">
-            <a class="navbar-brand" ui-sref="home">INÍCIO</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    
-                    <li class="nav-item dropdown">
-                        <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            USUÁRIO
-                        </span>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" ui-sref="users">EDITAR</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            LIVROS
-                        </span>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" ui-sref="books-form">CRIAR</a></li>
-                            <li><a class="dropdown-item" ui-sref="books">LISTAR</a></li>
-                        </ul>
-                    </li>
+<body ng-controller="indexCtrl">
+    <directive-menu style="margin: 0" ng-if="isLogged"></directive-menu>
 
-                    <li class="nav-item dropdown">
-                        <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            ESTUDANTES
-                        </span>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" ui-sref="students-form">CRIAR</a></li>
-                            <li><a class="dropdown-item" ui-sref="students">LISTAR</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            AUTORES
-                        </span>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" ui-sref="authors-form">CRIAR</a></li>
-                            <li><a class="dropdown-item" ui-sref="authors">LISTAR</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            EDITORAS
-                        </span>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" ui-sref="publishers-form">CRIAR</a></li>
-                            <li><a class="dropdown-item" ui-sref="publishers">LISTAR</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            SOLICITAÇÃO DE LIVROS
-                        </span>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" ui-sref="assigns-form">CRIAR</a></li>
-                            <li><a class="dropdown-item" ui-sref="assigns">LISTAR</a></li>
-                        </ul>
-                    </li>
-                    <button type="button" class="btn btn-danger">SAIR</button>
-
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    
-
-<br><br><br><br>
-
-    <div>
+    <div style="margin-top: 60px">
         <ui-view></ui-view>
     </div>
-<br><br><br>
-    <div style="text-align: center;">
-        © 2022 A Good Library.
 
+    <div style="text-align: center; margin-top: 60px">
+        © 2022 A Good Library.
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
@@ -122,6 +38,7 @@
     <script src="./services/assign.js"></script>
     <script src="./services/login.js"></script>
 
+    <script src="./controllers/index.js"></script>
     <script src="./controllers/logins-form.js"></script>
     <script src="./controllers/home.js"></script>
     <script src="./controllers/books.js"></script>
@@ -137,6 +54,8 @@
     <script src="./controllers/publishers-form.js"></script>
     <script src="./controllers/assigns.js"></script>
     <script src="./controllers/assigns-form.js"></script>
+
+    <script src="./directives/menu.js"></script>
 </body>
 
 </html>

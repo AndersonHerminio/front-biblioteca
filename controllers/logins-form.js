@@ -7,17 +7,26 @@ myApp.controller("loginCtrl", ["$scope", "$state", "LoginService",
 
     const isValid = () => {
       if (!$scope.form.email) {
-        alert("Informe o email");
+        Swal.fire({
+          icon: 'error',
+          title: 'Informe um email!',
+        })
         return false;
       }
 
       if ($scope.form.email.length < 3) {
-        alert("O campo email deve conter no mínimo 3 caracteres.");
+        Swal.fire({
+          icon: 'error',
+          title: 'O campo email deve conter no mínimo 3 caracteres!',
+        })
         return false;
       }
 
       if (!$scope.form.password) {
-        alert("Informe a senha");
+        Swal.fire({
+          icon: 'error',
+          title: 'Informe uma senha!',
+        })
         return false;
       }
 
@@ -34,7 +43,10 @@ myApp.controller("loginCtrl", ["$scope", "$state", "LoginService",
           $state.go("home");
         })
         .catch(() => {
-          alert("Dados inválidos");
+          Swal.fire({
+            icon: 'error',
+            title: 'Dados Inválidos!',
+          })
         });
     };
 	$scope.submit = submit;

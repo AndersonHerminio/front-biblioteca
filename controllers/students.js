@@ -36,7 +36,10 @@ myApp.controller("studentsCtrl", ['$scope', 'StudentService', '$state', function
         //   alert('Estudante removido');
           $state.reload();
         }).catch(() => {
-          alert('Erro ao remover o estudante');
+          Swal.fire({
+            icon: 'error',
+            title: 'Erro ao remover estudante!',
+          })
         })
       };
   

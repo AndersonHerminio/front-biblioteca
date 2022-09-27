@@ -13,27 +13,42 @@ myApp.controller("usersAddCtrl", ['$scope', 'UserService', '$state', '$statePara
 
     const isValid = () => {
         if (!$scope.form.name) {
-            alert('Informe o nome');
+            Swal.fire({
+                icon: 'error',
+                title: 'Informe um nome!',
+              })
             return false;
         }
 
         if ($scope.form.name.length < 3) {
-            alert('O campo nome deve conter no mínimo 3 caracteres.');
+            Swal.fire({
+                icon: 'error',
+                title: 'O campo nome deve conter no mínimo 3 caracteres!',
+              })
             return false;
         }
 
         if (!$scope.form.email) {
-            alert('Informe o email');
+            Swal.fire({
+                icon: 'error',
+                title: 'Informe um email!',
+              })
             return false;
         }
 
         if ($scope.form.email.length < 3) {
-            alert('O campo email deve conter no mínimo 3 caracteres.');
+            Swal.fire({
+                icon: 'error',
+                title: 'O campo email deve conter no mínimo 3 caracteres!',
+              })
             return false;
         }
 
         if (!$scope.form.password && !$scope.isEdit) {
-            alert('Informe a senha');
+            Swal.fire({
+                icon: 'error',
+                title: 'Insira uma senha!',
+              })
             return false;
         }
 
@@ -46,11 +61,21 @@ myApp.controller("usersAddCtrl", ['$scope', 'UserService', '$state', '$statePara
         }
 
             UserService.add($scope.form).then(() => {
-                alert('Usuário cadastrado com sucesso!');//coloca sweetAlert para sucesso
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Usuário editado com sucesso',
+                    showConfirmButton: false,
+                    timer: 2000
+                  })
                 $state.reload();
                 $state.go("home");
             }).catch(() => {
-                alert('Erro ao cadastrar');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Erro ao editar!',
+                  })
             });
         
     };

@@ -30,32 +30,50 @@ myApp.controller("booksFormCtrl", ['$scope', 'BookService', '$state', '$statePar
 
     const isValid = () => {
         if (!$scope.form.name) {
-            alert('Informe o nome');
+            Swal.fire({
+                icon: 'error',
+                title: 'Informe um nome!',
+              })
             return false;
         }
 
         if ($scope.form.name.length < 3) {
-            alert('O campo nome deve conter no mínimo 3 caracteres.');
+            Swal.fire({
+                icon: 'error',
+                title: 'O campo nome deve conter no mínimo 3 caracteres!',
+              })
             return false;
         }
 
         if (!$scope.form.publication_date) {
-            alert('Informe a data de nascimento');
+            Swal.fire({
+                icon: 'error',
+                title: 'Informe uma data de nascimento!',
+              })
             return false;
         }
 
         if (!moment($scope.form.publication_date).isValid()) {
-            alert('O campo data precisa ser preenchido.');
+            Swal.fire({
+                icon: 'error',
+                title: 'o campo data precisar ser preenchido!',
+              })
             return false;
         }
 
         if (!$scope.form.authors_id) {
-            alert('Selecione um autor.');
+            Swal.fire({
+                icon: 'error',
+                title: 'Informe um autor!',
+              })
             return false;
         }
 
         if (!$scope.form.publishers_id) {
-            alert('Selecione uma editora.');
+            Swal.fire({
+                icon: 'error',
+                title: 'Informe uma editora!',
+              })
             return false;
         }
 
@@ -81,18 +99,36 @@ myApp.controller("booksFormCtrl", ['$scope', 'BookService', '$state', '$statePar
 
         if ($scope.isEdit) {
             BookService.edit(data).then(() => {
-                alert('Livro editado com sucesso!');
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Livro editado com sucesso',
+                    showConfirmButton: false,
+                    timer: 2000
+                  })
                 $state.reload();
             }).catch(() => {
-                alert('Erro ao editar');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro ao editar!',
+                  })
             });
         } else {
             BookService.add(data).then(() => {
-                alert('Livro cadastrado com sucesso!');
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Livro cadastrado com sucesso',
+                    showConfirmButton: false,
+                    timer: 2000
+                  })
                 $state.reload();
             }).catch((e) => {
                 console.log(e);
-                alert('Erro ao cadastrar');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro ao cadastrar!',
+                  })
             });
         }
     };
