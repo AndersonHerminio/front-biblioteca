@@ -61,8 +61,7 @@ myApp.controller("assignsFormCtrl", ['$scope', 'AssignService', '$state', '$stat
         AssignService[action](bookForm).then(() => {
             AlertMessage.success(`Solicitação ${$scope.isEdit ? 'editada' : 'efetuada'} com sucesso`)
             $state.reload();
-        }).catch((e) => {
-            console.log(e);
+        }).catch(() => {
             AlertMessage.error(`Erro ao ${$scope.isEdit ? 'editar' : 'solicitar'}!`)
             
         });

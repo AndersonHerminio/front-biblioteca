@@ -17,9 +17,7 @@
                 <td>{{ assign.student.name }}</td>
                 <td>{{ assign.delivery_forecast | date: 'dd/MM/yyyy' }}</td>
                 <td>
-                    <i class="fa-solid fa-trash" ng-click="deleteAssign(assign.book.id, assign.student.id)"></i>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <i ui-sref="assigns-form({ id: assign.id })" class="fa-solid fa-pencil" style="margin-left: 4px"></i>
+                    <i class="fa-solid fa-trash" ng-click="deleteAssign(assign.book.id, assign.student.id)" style="margin-left: 20px"></i>
                 </td>
             </tr>
         </tbody>

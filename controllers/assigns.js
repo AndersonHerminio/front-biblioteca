@@ -37,7 +37,6 @@ myApp.controller("assignsCtrl", ['$scope', 'AssignService', '$state', 'BookServi
     };
 
     AssignService.destroy(filter).then(() => {
-      // alert('Autor removido');
       $state.reload();
     }).catch(() => {
       AlertMessage.error('Erro ao remover a solicitação!')
