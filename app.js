@@ -133,6 +133,16 @@ myApp.config(function ($stateProvider, $httpProvider) {
       templateUrl: "views/assigns-form.html",
       controller: "assignsFormCtrl",
       onEnter: isAuthorized
+    })
+    .state({
+      name: "assigns-concluded",
+      url: "/assigns-concluded/:id",
+      params: {
+        id: null,
+      },
+      templateUrl: "views/assigns-concluded.html",
+      controller: "assignsConcludedCtrl",
+      onEnter: isAuthorized
     });
 });
 

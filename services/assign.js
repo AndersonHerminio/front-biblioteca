@@ -3,16 +3,12 @@ myApp.service("AssignService", function ($http) {
     return $http.post(`${apiBaseUrl}/students/${data.student_id}/assign-book`, data);
   };
 
-  const edit = (data) => {
-    return $http.put(`${apiBaseUrl}/students/:student_id/assign-book/${data.id}`, data);
-  };
-
   const list = () => {
     return $http.get(`${apiBaseUrl}/student-assigns`);
   };
 
-  const find = (id) => {
-    return $http.get(`${apiBaseUrl}/students/:student_id/assign-book/${id}`);
+  const find = () => {
+    return $http.get(`${apiBaseUrl}/student-assigns-concluded`);
   };
 
   const destroy = ({ book_id, student_id }) => {
@@ -23,7 +19,6 @@ myApp.service("AssignService", function ($http) {
 
   return {
     add,
-    edit,
     find,
     list,
     destroy,

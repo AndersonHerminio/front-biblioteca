@@ -1,5 +1,5 @@
 <div class="container">
-    <h2 class="text-center">SOLICITAÇÕES PENDENTES</h2>
+    <h2 class="text-center">HISTÓRICO DE SOLICITAÇÕES</h2>
     <br>
     
     <table class="table table-striped">
@@ -9,7 +9,7 @@
             <th>NOME DO ALUNO</th>
             <th>SAÍDA</th>
             <th>PREVISÃO DE DEVOLUÇÃO</th>
-            <th>DEVOLVER</th>
+            <th>DEVOLVIDO</th>
         </thead>
         <tbody>
             <tr ng-repeat="assign in assigns">
@@ -18,9 +18,7 @@
                 <td>{{ assign.student.name }}</td>
                 <td>{{ assign.created_at | date: 'dd/MM/yyyy' }}</td>
                 <td style="padding-left: 60px">{{ assign.delivery_forecast | date: 'dd/MM/yyyy' }}</td>
-                <td>
-                    <i class="fa-solid fa-arrow-rotate-right" ng-click="deleteAssign(assign.book.id, assign.student.id)" style="margin-left: 40px"></i>
-                </td>
+                <td>{{ assign.book_return | date: 'dd/MM/yyyy' }}</td>
             </tr>
         </tbody>
     </table>

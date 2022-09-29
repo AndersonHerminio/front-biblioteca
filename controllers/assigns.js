@@ -15,15 +15,15 @@ myApp.controller("assignsCtrl", ['$scope', 'AssignService', '$state', 'BookServi
 
   const deleteAssign = async (book_id, student_id) => {
     const result = await Swal.fire({
-      title: "Deseja remover a solicitação?",
+      title: "Deseja efetuar a devolução?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Deletar",
+      confirmButtonText: "Sim, Devolver",
       cancelButtonText: "Cancelar!",
       reverseButtons: true,
     });
     if (result.isConfirmed) {
-      AlertMessage.success('A solicitação foi removida.')
+      AlertMessage.success('Devolução efetuada com sucesso')
       $state.reload();
     }
       
@@ -39,7 +39,7 @@ myApp.controller("assignsCtrl", ['$scope', 'AssignService', '$state', 'BookServi
     AssignService.destroy(filter).then(() => {
       $state.reload();
     }).catch(() => {
-      AlertMessage.error('Erro ao remover a solicitação!')
+      AlertMessage.error('Erro ao efetuar devolução!')
     })
   };
 

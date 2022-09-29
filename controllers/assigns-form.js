@@ -62,7 +62,7 @@ myApp.controller("assignsFormCtrl", ['$scope', 'AssignService', '$state', '$stat
             AlertMessage.success(`Solicitação ${$scope.isEdit ? 'editada' : 'efetuada'} com sucesso`)
             $state.reload();
         }).catch(() => {
-            AlertMessage.error(`Erro ao ${$scope.isEdit ? 'editar' : 'solicitar'}!`)
+            AlertMessage.error('Este livro não está disponível no momento!')
             
         });
 
