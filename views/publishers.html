@@ -12,9 +12,8 @@
                 <td>{{ publisher.id }}</td>
                 <td>{{ publisher.name }}</td>
                 <td>
-                    <i class="fa-solid fa-trash" ng-click="deletePublisher(publisher.id)"></i>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <i ui-sref="publishers-form({ id: publisher.id })" class="fa-solid fa-pencil" style="margin-left: 4px"></i>
+                    <i class="fa-solid fa-trash" ng-click="deletePublisher(publisher.id)" style="margin-left: 5px"></i>
+                    <i ui-sref="publishers-form({ id: publisher.id })" class="fa-solid fa-pencil" style="margin-left: 10px"></i>
                 </td>
             </tr>
         </tbody>

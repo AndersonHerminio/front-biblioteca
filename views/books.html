@@ -20,9 +20,8 @@
                 <td>{{ book.author.name }}</td>
                 <td>{{ book.publisher.name }}</td>
                 <td>
-                    <i class="fa-solid fa-trash" ng-click="deleteBook(book.id)"></i>
-                    &nbsp;&nbsp;
-                    <i ui-sref="books-form({ id: book.id })" class="fa-solid fa-pencil" style="margin-left: 4px"></i>
+                    <i class="fa-solid fa-trash" ng-click="deleteBook(book.id)" style="margin-left: 10px"></i>
+                    <i ui-sref="books-form({ id: book.id })" class="fa-solid fa-pencil" style="margin-left: 10px"></i>
                 </td>
             </tr>
         </tbody>

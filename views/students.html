@@ -16,9 +16,8 @@
                 <td>{{ student.email }}</td>
                 <td>{{ student.birth_date }}</td>
                 <td>
-                    <i class="fa-solid fa-trash" ng-click="deleteStudent(student.id)"></i>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <i ui-sref="students-form({ id: student.id })" class="fa-solid fa-pencil" style="margin-left: 4px"></i>
+                    <i class="fa-solid fa-trash" ng-click="deleteStudent(student.id)" style="margin-left: 5px"></i>
+                    <i ui-sref="students-form({ id: student.id })" class="fa-solid fa-pencil" style="margin-left: 10px"></i>
                 </td>
             </tr>
             <tr>

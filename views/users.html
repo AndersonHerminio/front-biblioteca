@@ -17,9 +17,8 @@
                 <td>{{ user.email }}</td>
                 <td>{{ user.created_at | date: 'dd/MM/yyyy HH:mm' }}</td>
                 <td>
-                    <i class="fa-solid fa-trash" ng-click="deleteUser(user.id)"></i>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <i ui-sref="users-edit({ id: user.id })" class="fa-solid fa-pencil" style="margin-left: 4px"></i>
+                    <i class="fa-solid fa-trash" ng-click="deleteUser(user.id)" style="margin-left: 5px"></i>
+                    <i ui-sref="users-edit({ id: user.id })" class="fa-solid fa-pencil" style="margin-left: 10px"></i>
                 </td>
             </tr>
         </tbody>

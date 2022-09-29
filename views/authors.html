@@ -16,9 +16,8 @@
                 <td>{{ author.birth_date }}</td>
                 <td>{{ author.biography }}</td>
                 <td>
-                    <i class="fa-solid fa-trash" ng-click="deleteAuthor(author.id)"></i>
-                    &nbsp;&nbsp;
-                    <i ui-sref="authors-form({ id: author.id })" class="fa-solid fa-pencil" style="margin-left: 4px"></i>
+                    <i class="fa-solid fa-trash" ng-click="deleteAuthor(author.id)" style="margin-left: 5px"></i>
+                    <i ui-sref="authors-form({ id: author.id })" class="fa-solid fa-pencil" style="margin-left: 10px"></i>
                 </td>
             </tr>
         </tbody>
