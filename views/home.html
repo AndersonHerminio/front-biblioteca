@@ -1,4 +1,57 @@
 <div class="container">
     <h2 class="text-center">BIBLIOTECA NACIONAL</h2>
-    <img class="rounded mx-auto d-block" src="https://beta.ctvnews.ca/content/dam/ctvnews/images/2022/4/26/1_5875013.jpg" alt="">
+
+    <h4 style="margin-top: 30px;">Top 3 Selecionados</h4>
+    <table style="margin-top: 20px;" class="table table-striped">
+        <thead>
+            <th>NOME DO LIVRO</th>
+            <th>TOTAL</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="book in topBooks">
+                <td>{{ book.name }}</td>
+                <td>{{ book.total }}</td>
+            </tr>
+            <tr>
+        </tbody>
+    </table>
+
+    <table style="margin-top: 50px;" class="table table-striped">
+        <thead>
+            <th>NOME DO ALUNO</th>
+            <th>TOTAL</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="student in topStudents">
+                <td>{{ student.name }}</td>
+                <td>{{ student.total }}</td>
+            </tr>
+            <tr>
+        </tbody>
+    </table>
+
+    <h4 style="margin-top: 50px;">Livros para retorno</h4>
+    <table style="margin-top: 20px;" class="table table-striped">
+        <thead>
+            <th>HOJE</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="todayReturn in todayReturnBooks">
+                <td>{{ todayReturn.book.name }}</td>
+            </tr>
+            <tr>
+        </tbody>
+    </table>
+
+    <table style="margin-top: 50px;" class="table table-striped">
+        <thead>
+            <th>EM ATRASO</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="delayed in delayedReturnBooks">
+                <td>{{ delayed.book.name }}</td>
+            </tr>
+            <tr>
+        </tbody>
+    </table>
 </div>
