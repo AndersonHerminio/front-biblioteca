@@ -143,7 +143,19 @@ myApp.config(function ($stateProvider, $httpProvider) {
       templateUrl: "views/assigns-concluded.html",
       controller: "assignsConcludedCtrl",
       onEnter: isAuthorized
-    });
+    })
+    .state({
+      name: "recovery-password",
+      url: "/recovery-password",
+      templateUrl: "views/recovery-password.html",
+      controller: "recoveryPasswordCtrl"
+    })
+    .state({
+      name: "change-password",
+      url: "/change-password",
+      templateUrl: "views/change-password.html",
+      controller: "changePasswordCtrl"
+    })
 });
 
 const isAuthorized = ($state, $rootScope) => {
