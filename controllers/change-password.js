@@ -15,7 +15,8 @@ myApp.controller("changePasswordCtrl", ['$scope', 'RecoveryPasswordService', '$s
         RecoveryPasswordService.validateToken($scope.form.token).then(() => {
             $scope.isTokenValid = true;
         }).catch(() => {
-            // $state.go('login')
+            AlertMessage.error("TOKEN EXPIRADO!")
+            $state.go('login')
         });
         // CHAMAR SERVICE MANDANDO O TOKEN
     };
