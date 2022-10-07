@@ -47,11 +47,11 @@ myApp.controller("changePasswordCtrl", ['$scope', 'RecoveryPasswordService', '$s
         }
 
         RecoveryPasswordService.changePassword($scope.form).then(() => {
-            AlertMessage.success("E-mail enviado com sucesso!")
+            AlertMessage.success("Acesso redefinido com sucesso!")
             $state.reload();
             $state.go("home");
         }).catch(() => {
-            AlertMessage.error("Erro ao enviar e-mail!")
+            AlertMessage.error("Erro ao redefinir acesso!")
         });
         
     };

@@ -8,8 +8,13 @@ myApp.service("RecoveryPasswordService", function ($http) {
     return $http.get(`${apiBaseUrl}/validate-token-password/${token}`);
   };
 
+  const changePassword = (data) => {
+    return $http.put(`${apiBaseUrl}/change-password/${data.token}`, data);
+  };
+
   return {
     recovery,
     validateToken,
+    changePassword,
   };
 });
