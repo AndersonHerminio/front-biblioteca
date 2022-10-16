@@ -1,9 +1,11 @@
 <div class="container">
     <h2 class="text-center">EDITAR USUÁRIO</h2>
-
+    <div ng-if="loading">
+        carregando
+    </div>
     <!-- <h2 class="text-center">{{ isEdit ? 'EDITAR' : 'CRIAR' }} USUÁRIO</h2> -->
 
-    <form>
+    <form ng-if="!loading">
         <div class="form-group">
             <label for="inputUserName">NOME</label>
             <input type="text" ng-model="form.name" class="form-control" id="inputUserName" placeholder="Insira um nome">

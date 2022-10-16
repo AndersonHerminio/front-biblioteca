@@ -29,7 +29,6 @@ myApp.controller("studentsCtrl", ['$scope', 'StudentService', '$state', 'AlertMe
         }
   
         StudentService.destroy(id).then(() => {
-        //   alert('Estudante removido');
           $state.reload();
         }).catch(() => {
           AlertMessage.error("Erro ao remover estudante!")
