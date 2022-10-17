@@ -1,31 +1,26 @@
-myApp.controller("homeCtrl", ['$scope', 'HomeService', function ($scope, HomeService) {
+myApp.controller("homeCtrl", ['$scope', 'HomeService', '$q', function ($scope, HomeService, $q) {
     $scope.books = [];
     $scope.students = [];
 
     const init = () => {
-        listTop3();
-        listReturnedBooks();
-    };
-
-    const listTop3 = () => {
         $scope.loading = true;
 
-        return HomeService.top3Books().then(response => {
-            $scope.topBooks = response.data.books;
-            $scope.topStudents = response.data.students;
-        }).finally(() => {
+        $q.all([listTop3(), listReturnedBooks()]).finally(() => {
             $scope.loading = false;
         });
     };
 
+    const listTop3 = () => {
+        return HomeService.top3Books().then(response => {
+            $scope.topBooks = response.data.books;
+            $scope.topStudents = response.data.students;
+        });
+    };
+
     const listReturnedBooks = () => {
-        $scope.loading = true;
-        
         return HomeService.booksReturn().then(response => {
             $scope.todayReturnBooks = response.data.returnToday;
             $scope.delayedReturnBooks = response.data.returnDelayed;
-        }).finally(() => {
-            $scope.loading = false;
         });
     };
 

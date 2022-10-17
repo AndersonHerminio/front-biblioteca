@@ -1,19 +1,26 @@
-<div class="container">
+<div ng-if="loading" style="width: 100%; display: flex; align-items: center; justify-content: center;"><img
+        style="width: 100px;" src="img/amigo-loading-v3.gif" alt=""></div>
+        
+<div class="container" ng-if="!loading">
+
     <h2 class="text-center">{{ isEdit ? 'EDITAR' : 'CRIAR' }} ESTUDANTE</h2>
     <form>
         <div class="form-group">
             <label for="inputNameStudens">NOME</label>
-            <input type="text" ng-model="form.name" class="form-control" id="inputNameStudens" placeholder="Insira um nome">
+            <input type="text" ng-model="form.name" class="form-control" id="inputNameStudens"
+                placeholder="Insira um nome">
         </div>
         <br>
         <div class="form-group">
             <label for="inputEmailStudents">E-MAIL</label>
-            <input type="email" ng-model="form.email" class="form-control" id="inputEmailStudents" placeholder="Insira um e-mail">
+            <input type="email" ng-model="form.email" class="form-control" id="inputEmailStudents"
+                placeholder="Insira um e-mail">
         </div>
         <br>
         <div class="form-group">
             <label for="inputBirthStudents">DATA DE NASCIMENTO</label>
-            <input type="date" ng-model="form.birth_date" class="form-control" id="inputBirthStudents" placeholder="Insira uma data">
+            <input type="date" ng-model="form.birth_date" class="form-control" id="inputBirthStudents"
+                placeholder="Insira uma data">
         </div>
         <br>
         <br>

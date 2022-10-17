@@ -1,13 +1,18 @@
-myApp.controller("usersEditCtrl", ['$scope', 'UserService', '$state', '$stateParams', 'AlertMessage', function($scope, UserService, $state, $stateParams, AlertMessage) {
+myApp.controller("usersEditCtrl", ['$scope', 'UserService', '$state', '$stateParams', 'AlertMessage', function ($scope, UserService, $state, $stateParams, AlertMessage) {
     $scope.form = {
         name: '',
         email: '',
     };
 
     const init = () => {
+        $scope.loading = true;
+
         UserService.find($stateParams.id).then(response => {
             $scope.form = response.data;
-        }).catch(() => $state.go('home'));
+        }).catch(() => $state.go('home'))
+            .finally(() => {
+                $scope.loading = false;
+            });
     };
 
     const isValid = () => {
@@ -38,12 +43,16 @@ myApp.controller("usersEditCtrl", ['$scope', 'UserService', '$state', '$statePar
         if (!isValid()) {
             return;
         }
-            UserService.edit($scope.form).then(() => {
-                AlertMessage.success("Usuário editado com sucesso!")
-                $state.reload();
-            }).catch(() => {
-                AlertMessage.error("Erro ao editar!")
-            });
+        $scope.loading = true;
+
+        UserService.edit($scope.form).then(() => {
+            AlertMessage.success("Usuário editado com sucesso!")
+            $state.reload();
+        }).catch(() => {
+            AlertMessage.error("Erro ao editar!")
+        }).finally(() => {
+            $scope.loading = false;
+        });
     };
 
     init();

@@ -1,8 +1,10 @@
 <div class="container">
-    <h2 class="text-center">LISTAR USUÁRIOS</h2>
+    <h2 class="text-center">DADOS DO USUÁRIO</h2>
     <br>
+    <div ng-if="loading" style="width: 100%; display: flex; align-items: center; justify-content: center;"><img
+        style="width: 100px;" src="img/amigo-loading-v3.gif" alt=""></div>
     
-    <table class="table table-striped">
+    <table class="table table-striped" ng-if="!loading">
         <thead>
             <th>NÚMERO</th>
             <th>NOME</th>

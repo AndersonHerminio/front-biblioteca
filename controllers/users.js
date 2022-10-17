@@ -1,43 +1,50 @@
 myApp.controller("usersCtrl", ["$scope", "UserService", '$state', 'AlertMessage', function ($scope, UserService, $state, AlertMessage) {
-    $scope.users = [];
+  $scope.users = [];
 
-    const init = () => {
-      listUsers();
-    };
+  const init = () => {
+    $scope.loading = true;
 
-    const listUsers = () => {
-      UserService.list().then((response) => {
-        $scope.users = response.data;
-      });
-    };
+    listUsers();
+  };
 
-    const deleteUser = async (id) => {
-      const result = await Swal.fire({
-        title: "Deseja remover o usuário?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Deletar",
-        cancelButtonText: "Cancelar!",
-        reverseButtons: true,
-      });
-      if (result.isConfirmed) {
-        AlertMessage.success("Usuário removido com sucesso!")
-      }
+  const listUsers = () => {
+    UserService.list().then((response) => {
+      $scope.users = response.data;
+    }).finally(() => {
+      $scope.loading = false;
+    });
+  };
 
-      if (!result.isConfirmed) {
-        return;
-      }
+  const deleteUser = async (id) => {
+    const result = await Swal.fire({
+      title: "Deseja remover o usuário?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Deletar",
+      cancelButtonText: "Cancelar!",
+      reverseButtons: true,
+    });
+    if (result.isConfirmed) {
+      AlertMessage.success("Usuário removido com sucesso!")
+    }
 
-      UserService.destroy(id).then(() => {
-        $state.reload();
-        localStorage.clear();
-        $state.go("login")
-      }).catch(() => {
-        AlertMessage.error("Erro ao remover usuário!")
-      })
-    };
+    if (!result.isConfirmed) {
+      return;
+    }
+    $scope.loading = true;
 
-    init();
-    $scope.deleteUser = deleteUser;
-  },
+    UserService.destroy(id).then(() => {
+      $state.reload();
+      localStorage.clear();
+      $state.go("login")
+    }).catch(() => {
+      AlertMessage.error("Erro ao remover usuário!")
+    }).finally(() => {
+      $scope.loading = false;
+    });
+  };
+
+  init();
+  $scope.deleteUser = deleteUser;
+},
 ]);

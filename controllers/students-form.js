@@ -1,4 +1,4 @@
-myApp.controller("studentsFormCtrl", ['$scope', 'StudentService', '$state', '$stateParams', 'AlertMessage', function($scope, StudentService, $state, $stateParams, AlertMessage) {
+myApp.controller("studentsFormCtrl", ['$scope', 'StudentService', '$state', '$stateParams', 'AlertMessage', '$q',function ($scope, StudentService, $state, $stateParams, AlertMessage, $q) {
     $scope.isEdit = !!$stateParams.id;
     $scope.form = {
         name: '',
@@ -11,8 +11,12 @@ myApp.controller("studentsFormCtrl", ['$scope', 'StudentService', '$state', '$st
             return;
         }
 
+        $scope.loading = true;
+
         StudentService.find($stateParams.id).then(response => {
             $scope.form = response.data;
+        }).finally(() => {
+            $scope.loading = false;
         });
     };
 
@@ -45,7 +49,7 @@ myApp.controller("studentsFormCtrl", ['$scope', 'StudentService', '$state', '$st
             AlertMessage.error("O campo data precisa ser preenchido!")
             return false;
         }
-        
+
 
         return true;
     };
@@ -65,7 +69,6 @@ myApp.controller("studentsFormCtrl", ['$scope', 'StudentService', '$state', '$st
         }
 
         const data = getObjData();
-
 
         if ($scope.isEdit) {
             StudentService.edit(data).then(() => {
