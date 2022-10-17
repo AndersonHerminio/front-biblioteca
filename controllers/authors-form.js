@@ -10,10 +10,13 @@ myApp.controller("authorsFormCtrl", ['$scope', 'AuthorService', '$state', '$stat
         if (!$scope.isEdit) {
             return;
         }
+        $scope.loading = true;
 
         AuthorService.find($stateParams.id).then(response => {
             $scope.form = response.data;
-        });
+        }).finally(() => {
+            $scope.loading = false;
+        })
     };
 
     const isValid = () => {
@@ -65,12 +68,15 @@ myApp.controller("authorsFormCtrl", ['$scope', 'AuthorService', '$state', '$stat
 
         const data = getObjData();
 
+        $scope.loading = true;
         if ($scope.isEdit) {
             AuthorService.edit(data).then(() => {
                 AlertMessage.success('Autor editado com sucesso')
                 $state.reload();
             }).catch(() => {
                 AlertMessage.error('Erro ao editar!')
+            }).finally(() => {
+                $scope.loading = false;
             });
         } else {
             AuthorService.add(data).then(() => {
@@ -78,6 +84,8 @@ myApp.controller("authorsFormCtrl", ['$scope', 'AuthorService', '$state', '$stat
                 $state.reload();
             }).catch(() => {
                 AlertMessage.error('Erro ao cadastrar!')
+            }).finally(() => {
+                $scope.loading = false;
             });
         }
     };

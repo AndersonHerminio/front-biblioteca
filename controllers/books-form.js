@@ -1,4 +1,4 @@
-myApp.controller("booksFormCtrl", ['$scope', 'BookService', '$state', '$stateParams', 'AuthorService', 'PublisherService', 'AlertMessage',function($scope, BookService, $state, $stateParams, AuthorService, PublisherService, AlertMessage) {
+myApp.controller("booksFormCtrl", ['$scope', 'BookService', '$state', '$stateParams', 'AuthorService', 'PublisherService', 'AlertMessage', function ($scope, BookService, $state, $stateParams, AuthorService, PublisherService, AlertMessage) {
     $scope.isEdit = !!$stateParams.id;
     $scope.form = {
         name: '',
@@ -6,7 +6,7 @@ myApp.controller("booksFormCtrl", ['$scope', 'BookService', '$state', '$statePar
         authors_id: '',
         publishers_id: ''
     };
-    
+
     $scope.authors = [];
     $scope.publishers = [];
 
@@ -14,18 +14,21 @@ myApp.controller("booksFormCtrl", ['$scope', 'BookService', '$state', '$statePar
         AuthorService.list().then(response => {
             $scope.authors = response.data;
         });
-
+        
         PublisherService.list().then(response => {
             $scope.publishers = response.data;
         });
-
+        
         if (!$scope.isEdit) {
             return;
         }
-
+        
+        $scope.loading = true;
         BookService.find($stateParams.id).then(response => {
             $scope.form = response.data;
-        });
+        }).finally(() => {
+            $scope.loading = false;
+        })
     };
 
     const isValid = () => {
@@ -78,13 +81,15 @@ myApp.controller("booksFormCtrl", ['$scope', 'BookService', '$state', '$statePar
 
         const data = getObjData();
 
-
+        $scope.loading = true;
         if ($scope.isEdit) {
             BookService.edit(data).then(() => {
                 AlertMessage.success('Livro editado com sucesso')
                 $state.reload();
             }).catch(() => {
                 AlertMessage.error('Erro ao editar!')
+            }).finally(() => {
+                $scope.loading = false;
             });
         } else {
             BookService.add(data).then(() => {
@@ -93,6 +98,8 @@ myApp.controller("booksFormCtrl", ['$scope', 'BookService', '$state', '$statePar
             }).catch((e) => {
                 console.log(e);
                 AlertMessage.error('Erro ao cadastrar!')
+            }).finally(() => {
+                $scope.loading = false;
             });
         }
     };

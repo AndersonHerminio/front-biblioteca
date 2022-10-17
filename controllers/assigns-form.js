@@ -1,4 +1,4 @@
-myApp.controller("assignsFormCtrl", ['$scope', 'AssignService', '$state', '$stateParams', 'BookService', 'StudentService', 'AlertMessage',function($scope, AssignService, $state, $stateParams, BookService, StudentService, AlertMessage) {
+myApp.controller("assignsFormCtrl", ['$scope', 'AssignService', '$state', '$stateParams', 'BookService', 'StudentService', 'AlertMessage', function ($scope, AssignService, $state, $stateParams, BookService, StudentService, AlertMessage) {
     $scope.isEdit = !!$stateParams.id;
     $scope.form = {
         book_id: '',
@@ -25,15 +25,18 @@ myApp.controller("assignsFormCtrl", ['$scope', 'AssignService', '$state', '$stat
         if (!$scope.isEdit) {
             return;
         }
+        $scope.loading = true;
 
         AssignService.find($stateParams.id).then(response => {
             $scope.form = response.data;
-        });
+        }).finally(() => {
+            $scope.loading = false;
+        })
     };
 
     const isValid = () => {
         const hasSelectedBooks = $scope.books.some(book => book.selected);
-    
+
         if (!hasSelectedBooks) {
             AlertMessage.error('Selecione um livro!')
             return false;
@@ -51,7 +54,7 @@ myApp.controller("assignsFormCtrl", ['$scope', 'AssignService', '$state', '$stat
         if (!isValid()) {
             return;
         }
-
+        $scope.loading = true;
         const action = $scope.isEdit ? 'edit' : 'add';
         const selectedBookIds = $scope.books.filter(book => book.selected).map(book => book.id);
         const bookForm = {
@@ -63,9 +66,9 @@ myApp.controller("assignsFormCtrl", ['$scope', 'AssignService', '$state', '$stat
             $state.reload();
         }).catch(() => {
             AlertMessage.error('Este livro não está disponível no momento!')
-            
+        }).finally(() => {
+            $scope.loading = false;
         });
-
     };
 
     const addBook = () => {

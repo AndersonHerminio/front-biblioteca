@@ -1,4 +1,4 @@
-myApp.controller("publishersFormCtrl", ['$scope', 'PublisherService', '$state', '$stateParams', 'AlertMessage',function($scope, PublisherService, $state, $stateParams, AlertMessage) {
+myApp.controller("publishersFormCtrl", ['$scope', 'PublisherService', '$state', '$stateParams', 'AlertMessage', function($scope, PublisherService, $state, $stateParams, AlertMessage) {
     $scope.isEdit = !!$stateParams.id;
     $scope.form = {
         name: '',
@@ -8,10 +8,13 @@ myApp.controller("publishersFormCtrl", ['$scope', 'PublisherService', '$state', 
         if (!$scope.isEdit) {
             return;
         }
-        
+        $scope.loading = true;
+
         PublisherService.find($stateParams.id).then(response => {
             $scope.form = response.data;
-        });
+        }).finally(() => {
+            $scope.loading = false;
+        })
     };
 
     const isValid = () => {
@@ -31,13 +34,15 @@ myApp.controller("publishersFormCtrl", ['$scope', 'PublisherService', '$state', 
         if (!isValid()) {
             return;
         }
-
+        $scope.loading = true;
         if ($scope.isEdit) {
             PublisherService.edit($scope.form).then(() => {
                 AlertMessage.success("Editora editada com sucesso!")
                 $state.reload();
             }).catch(() => {
                 AlertMessage.error("Erro ao editar!")
+            }).finally(() => {
+                $scope.loading = false;
             });
         } else {
             PublisherService.add($scope.form).then(() => {
@@ -45,6 +50,8 @@ myApp.controller("publishersFormCtrl", ['$scope', 'PublisherService', '$state', 
                 $state.reload();
             }).catch(() => {
                 AlertMessage.error("Erro ao cadastrar!")
+            }).finally(() => {
+                $scope.loading = false;
             });
         }
     };

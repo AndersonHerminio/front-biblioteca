@@ -4,20 +4,24 @@ myApp.controller("booksCtrl", [
   "$state",
   'AlertMessage',
   function ($scope, BookService, $state, AlertMessage) {
-    
+
     $scope.books = [];
 
     const init = () => {
+      $scope.loading = true;
       listBooks();
     };
 
     const listBooks = () => {
       BookService.list().then((response) => {
         $scope.books = response.data;
+      }).finally(() => {
+        $scope.loading = false;
       });
     };
 
     const deleteBook = async (id) => {
+      $scope.loading = true;
       const result = await Swal.fire({
         title: "Deseja remover o livro?",
         icon: "warning",
@@ -36,11 +40,12 @@ myApp.controller("booksCtrl", [
 
       BookService.destroy(id)
         .then(() => {
-          // alert("Livro removido");
           $state.reload();
         })
         .catch(() => {
           AlertMessage.error('Erro ao remover livro!')
+        }).finally(() => {
+          $scope.loading = false;
         });
     };
 

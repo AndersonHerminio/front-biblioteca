@@ -3,7 +3,6 @@ myApp.controller("studentsCtrl", ['$scope', 'StudentService', '$state', 'AlertMe
 
   const init = () => {
     $scope.loading = true;
-
     listStudents();
   };
 
@@ -16,6 +15,7 @@ myApp.controller("studentsCtrl", ['$scope', 'StudentService', '$state', 'AlertMe
   }
 
   const deleteStudent = async (id) => {
+    $scope.loading = true;
     const result = await Swal.fire({
       title: "Deseja remover o estudante?",
       icon: "warning",

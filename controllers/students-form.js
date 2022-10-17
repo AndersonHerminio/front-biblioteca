@@ -1,4 +1,4 @@
-myApp.controller("studentsFormCtrl", ['$scope', 'StudentService', '$state', '$stateParams', 'AlertMessage', '$q',function ($scope, StudentService, $state, $stateParams, AlertMessage, $q) {
+myApp.controller("studentsFormCtrl", ['$scope', 'StudentService', '$state', '$stateParams', 'AlertMessage', function ($scope, StudentService, $state, $stateParams, AlertMessage) {
     $scope.isEdit = !!$stateParams.id;
     $scope.form = {
         name: '',
@@ -70,12 +70,16 @@ myApp.controller("studentsFormCtrl", ['$scope', 'StudentService', '$state', '$st
 
         const data = getObjData();
 
+        $scope.loading = true;
+
         if ($scope.isEdit) {
             StudentService.edit(data).then(() => {
                 AlertMessage.success("Estudante editado com sucesso!")
                 $state.reload();
             }).catch(() => {
                 AlertMessage.error("Erro ao editar!")
+            }).finally(() => {
+                $scope.loading = false;
             });
         } else {
             StudentService.add(data).then(() => {
@@ -83,6 +87,8 @@ myApp.controller("studentsFormCtrl", ['$scope', 'StudentService', '$state', '$st
                 $state.reload();
             }).catch(() => {
                 AlertMessage.error("Erro ao editar!")
+            }).finally(() => {
+                $scope.loading = false;
             });
         }
     };
