@@ -16,7 +16,6 @@ myApp.controller("usersCtrl", ["$scope", "UserService", '$state', 'AlertMessage'
   };
 
   const deleteUser = async (id) => {
-    $scope.loading = true;
     const result = await Swal.fire({
       title: "Deseja remover o usuário?",
       icon: "warning",
@@ -28,11 +27,12 @@ myApp.controller("usersCtrl", ["$scope", "UserService", '$state', 'AlertMessage'
     if (result.isConfirmed) {
       AlertMessage.success("Usuário removido com sucesso!")
     }
-
+    
     if (!result.isConfirmed) {
       return;
     }
-
+    
+    $scope.loading = true;
     UserService.destroy(id).then(() => {
       $state.reload();
       localStorage.clear();

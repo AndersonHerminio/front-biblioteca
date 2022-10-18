@@ -16,7 +16,6 @@ myApp.controller("publishersCtrl", ['$scope', 'PublisherService', '$state', 'Ale
   }
 
   const deletePublisher = async (id) => {
-    $scope.loading = true;
     const result = await Swal.fire({
       title: "Deseja remover a editora?",
       icon: "warning",
@@ -28,11 +27,12 @@ myApp.controller("publishersCtrl", ['$scope', 'PublisherService', '$state', 'Ale
     if (result.isConfirmed) {
       AlertMessage.success('A editora foi removida!')
     }
-
+    
     if (!result.isConfirmed) {
       return;
     }
     
+    $scope.loading = true;
     PublisherService.destroy(id).then(() => {
       $state.reload();
     }).catch(() => {

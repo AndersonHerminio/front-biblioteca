@@ -16,7 +16,6 @@ myApp.controller("authorsCtrl", ['$scope', 'AuthorService', '$state', 'AlertMess
   };
 
   const deleteAuthor = async (id) => {
-    $scope.loading = true;
     const result = await Swal.fire({
       title: "Deseja remover o autor?",
       icon: "warning",
@@ -28,11 +27,12 @@ myApp.controller("authorsCtrl", ['$scope', 'AuthorService', '$state', 'AlertMess
     if (result.isConfirmed) {
       AlertMessage.success('O Autor foi removido.')
     }
-
+    
     if (!result.isConfirmed) {
       return;
     }
-
+    
+    $scope.loading = true;
     AuthorService.destroy(id).then(() => {
       $state.reload();
     }).catch(() => {

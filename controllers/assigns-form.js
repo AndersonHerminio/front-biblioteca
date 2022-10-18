@@ -54,13 +54,13 @@ myApp.controller("assignsFormCtrl", ['$scope', 'AssignService', '$state', '$stat
         if (!isValid()) {
             return;
         }
-        $scope.loading = true;
         const action = $scope.isEdit ? 'edit' : 'add';
         const selectedBookIds = $scope.books.filter(book => book.selected).map(book => book.id);
         const bookForm = {
             student_id: ~~$scope.form.student_id,
             book_id: selectedBookIds
         };
+        $scope.loading = true;
         AssignService[action](bookForm).then(() => {
             AlertMessage.success(`Solicitação ${$scope.isEdit ? 'editada' : 'efetuada'} com sucesso`)
             $state.reload();

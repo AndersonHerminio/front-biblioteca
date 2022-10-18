@@ -15,7 +15,6 @@ myApp.controller("studentsCtrl", ['$scope', 'StudentService', '$state', 'AlertMe
   }
 
   const deleteStudent = async (id) => {
-    $scope.loading = true;
     const result = await Swal.fire({
       title: "Deseja remover o estudante?",
       icon: "warning",
@@ -27,11 +26,12 @@ myApp.controller("studentsCtrl", ['$scope', 'StudentService', '$state', 'AlertMe
     if (result.isConfirmed) {
       AlertMessage.success("Estudante removido com sucesso!")
     }
-
+    
     if (!result.isConfirmed) {
       return;
     }
-
+    
+    $scope.loading = true;
     StudentService.destroy(id).then(() => {
       $state.reload();
     }).catch(() => {

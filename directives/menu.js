@@ -3,7 +3,7 @@ myApp.directive('directiveMenu', function() {
         restrict: 'E',
         templateUrl: '../views/menu.html',
         controller: function($scope, $rootScope, $state) {
-            const logout =  () => {
+            const logout = () => {
                 localStorage.clear();
                 $rootScope.isLogged = false;
                 $state.go("login")

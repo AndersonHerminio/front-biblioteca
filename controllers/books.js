@@ -21,7 +21,6 @@ myApp.controller("booksCtrl", [
     };
 
     const deleteBook = async (id) => {
-      $scope.loading = true;
       const result = await Swal.fire({
         title: "Deseja remover o livro?",
         icon: "warning",
@@ -33,11 +32,12 @@ myApp.controller("booksCtrl", [
       if (result.isConfirmed) {
         AlertMessage.success('O livro foi removido.')
       }
-
+      
       if (!result.isConfirmed) {
         return;
       }
-
+      
+      $scope.loading = true;
       BookService.destroy(id)
         .then(() => {
           $state.reload();

@@ -17,7 +17,6 @@ myApp.controller("assignsCtrl", ['$scope', 'AssignService', '$state', 'BookServi
   };
 
   const deleteAssign = async (book_id, student_id) => {
-    $scope.loading = true;
     const result = await Swal.fire({
       title: "Deseja efetuar a devolução?",
       icon: "warning",
@@ -30,16 +29,17 @@ myApp.controller("assignsCtrl", ['$scope', 'AssignService', '$state', 'BookServi
       AlertMessage.success('Devolução efetuada com sucesso')
       $state.reload();
     }
-
+    
     if (!result.isConfirmed) {
       return;
     }
-
+    
     const filter = {
       book_id,
       student_id
     };
-
+    
+    $scope.loading = true;
     AssignService.destroy(filter).then(() => {
       $state.reload();
     }).catch(() => {
